@@ -1,0 +1,24 @@
+{
+  "name": "api-docs",
+  "main": "./src/main",
+  "version": "0.0.0",
+  "description": "Documentation browser for popular APIs and languages.",
+  "keywords": [
+  ],
+  "activationCommands": {
+  },
+  "repository": "https://github.com/sharvil/api-docs",
+  "license": "Apache 2.0",
+  "engines": {
+    "atom": ">=0.174.0"
+  },
+  "dependencies": {
+    "atom-space-pen-views": "^2.0.0",
+    "follow-redirects": "^0.0.1",
+    "fuzzaldrin": "^2.0.0",
+    "jquery": "^2",
+    "mkdirp": "^0.5.0",
+    "prismjs": "^0.0.1",
+    "rmdir": "^1.0.0"
+  }
+}
