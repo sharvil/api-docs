@@ -2,14 +2,11 @@
   "name": "api-docs",
   "author": "Sharvil Nanavati <sharvil.nanavati@gmail.com>",
   "description": "Documentation browser for popular APIs and languages.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/sharvil/api-docs",
   "repository": "https://github.com/sharvil/api-docs",
-
   "main": "./src/main",
-
   "license": "Apache 2.0",
-
   "keywords": [
     "docs",
     "documentation",
@@ -18,14 +15,10 @@
     "language",
     "devdocs"
   ],
-
   "engines": {
     "atom": ">=0.174.0"
   },
-
-  "activationCommands": {
-  },
-
+  "activationCommands": {},
   "dependencies": {
     "atom-space-pen-views": "^2.0.0",
     "follow-redirects": "^0.0.1",
