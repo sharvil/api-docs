@@ -30,6 +30,10 @@ class Application {
 
   searchUnderCursor_() {
     const editor = atom.workspace.getActiveTextEditor();
+    if (!editor) {
+      return;
+    }
+
     const grammar = editor.getGrammar();
     const word = editor.getWordUnderCursor({ includeNonWordCharacters: false });
     const items = this.library_.queryAll();
