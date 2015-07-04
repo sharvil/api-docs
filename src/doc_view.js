@@ -43,7 +43,7 @@ class DocView extends ScrollView {
       const elements = $(root).find('a');
       for (let i = 0; i < elements.length; ++i) {
         const href = elements[i].getAttribute('href');
-        if (!href.startsWith('http')) {
+        if (href && !href.startsWith('http')) {
           elements[i].onclick = event => this.setView(Url.resolve(url, href));
         }
       }
