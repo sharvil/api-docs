@@ -69,6 +69,9 @@ class Resource {
             Mkdirp(Path.dirname(writeFilename));
             new File(writeFilename).write(result);
             return result;
+          }).catch(error => {
+            return new File(writeFilename).read()
+                .then(result => result ? result : Promise.reject('ReadFail'));
           });
         });
   }
