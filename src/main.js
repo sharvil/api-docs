@@ -35,11 +35,14 @@ class Application {
     }
 
     const grammar = editor.getGrammar();
-    const word = editor.getWordUnderCursor({ includeNonWordCharacters: false });
+    const selectedText = editor.getSelectedText();
+    const wordUnderCursor = editor.getWordUnderCursor({ includeNonWordCharacters: false });
     const items = this.library_.queryAll();
 
+    const searchQuery = selectedText ? selectedText : wordUnderCursor;
+
     this.lazyLoad_();
-    new QueryView(word, items);
+    new QueryView(searchQuery, items);
   }
 
   opener_(url) {
