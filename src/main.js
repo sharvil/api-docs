@@ -64,7 +64,15 @@ class Application {
 
 const instance = new Application();
 module.exports = {
-  config: {},
+  config: {
+    '_theme': {
+      title: 'Theme',
+      description: 'This styles the documentation window.',
+      type: 'string',
+      default: 'Light',
+      enum: ['Light', 'Dark']
+    }
+  },
 
   activate: function() {
     instance.activate();
