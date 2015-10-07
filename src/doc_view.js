@@ -66,7 +66,10 @@ class DocView extends ScrollView {
   }
 
   destroy() {
-    this.pane_.destroy();
+    this.pane_.destroyItem(this);
+    if (this.pane_.getItems().length === 0) {
+      this.pane_.destroy();
+    }
   }
 
   attached() {
