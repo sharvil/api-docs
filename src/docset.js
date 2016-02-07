@@ -9,8 +9,8 @@ class DocSet {
     this.name_ = item.name;
     this.type_ = item.type;
     this.version_ = item.version;
-    this.indexPath_ = item.index_path;
-    this.dbPath_ = item.db_path;
+    this.indexPath_ = item.slug + '/index.json';
+    this.dbPath_ = item.slug + '/db.json';
     this.version_ = item.mtime;
     this.sizeBytes_ = item.db_size;
     this.index_ = null;
