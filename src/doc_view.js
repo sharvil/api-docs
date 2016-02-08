@@ -6,6 +6,7 @@ const Emitter = require('atom').Emitter;
 const Highlight = require('./highlight');
 const Resource = require('./resource');
 const ScrollView = require('atom-space-pen-views').ScrollView;
+const Shell = require('shell');
 const Url = require('url');
 
 class DocView extends ScrollView {
@@ -36,24 +37,27 @@ class DocView extends ScrollView {
       const docset = this.library_.get(parsedUrl.hostname);
 
       let style = DocView.DOC_STYLE_LIGHT_;
-      let styleClass = 'api-docs-theme-light';
+      let styleClass = '#fff';
       if (atom.config.get('api-docs._theme') == 'Dark') {
         style = DocView.DOC_STYLE_DARK_;
-        styleClass = 'api-docs-theme-dark'
+        styleClass = '#303030';
       }
 
-      // We should call `createShadowRoot()` on `this.element` but Atom crashes
-      // when a link is clicked inside a shadow root (atom/atom#5388).
-      const root = this.element;
+      const root = this.element.createShadowRoot();
       root.innerHTML = `<style type="text/css">${style}</style>`;
-      root.innerHTML += `<div class="${docset.classNames}" style="font-size: 10pt">${docset.getContent(path)}</div>`;
-      root.classList.add(styleClass);
+      root.innerHTML += `<div class="${docset.classNames}" style="font-size: 10pt; background-color: ${styleClass}">${docset.getContent(path)}</div>`;
 
       // Set up click handlers for relative URLs so we can resolve internally.
       const elements = $(root).find('a');
       for (let i = 0; i < elements.length; ++i) {
         const href = elements[i].getAttribute('href');
-        if (href && !href.startsWith('http')) {
+        if (!href) {
+          continue;
+        }
+
+        if (href.startsWith('http')) {
+          elements[i].onclick = event => Shell.openExternal(href);
+        } else {
           elements[i].onclick = event => this.setView(Url.resolve(url, href));
         }
       }
