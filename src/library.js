@@ -51,8 +51,12 @@ class Library {
       const item = items[i];
       catalog[item.slug] = new DocSet(item);
 
+      var title = item.name
+      if ('version' in item && item.version) {
+        title += ' ' + item.version
+      }
       const schema = {
-        title: item.name,
+        title: title,
         type: 'boolean',
         default: Library.DEFAULT_DOCSETS_.has(item.slug)
       };
