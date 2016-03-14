@@ -70,7 +70,8 @@ module.exports = {
       description: 'This styles the documentation window.',
       type: 'string',
       default: 'Light',
-      enum: ['Light', 'Dark']
+      enum: ['Light', 'Dark'],
+      order: 1
     }
   },
 
