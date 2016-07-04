@@ -33,8 +33,26 @@ class DocView extends ScrollView {
     // Set the view only after DOC_STYLE_{LIGHT|DARK}_ are set.
     DocView.DOC_STYLE_PROMISE_.then(() => {
       const parsedUrl = Url.parse(url, true);
-      const path = parsedUrl.pathname.substr(1);
-      const docset = this.library_.get(parsedUrl.hostname);
+      var path = parsedUrl.pathname.substr(1);
+      // The hostname part of the url may contain a tilde if the slug does.
+      // Therefore this can't rely on Url.parse() to determine the hostname and path.
+      var hostname = parsedUrl.hostname;
+      var indexAfterHostname = parsedUrl.protocol.length + 2 + parsedUrl.hostname.length;
+      if (url.substr(indexAfterHostname, 1) == '~') {
+        tildePart = url.substring(indexAfterHostname, url.indexOf('/', indexAfterHostname));
+        // move tilde part from path to hostname
+        path = path.substring(tildePart.length + 1);
+        hostname += tildePart;
+      }
+      var docset = this.library_.get(hostname);
+      if (!docset && path.startsWith('~') && url.substr(indexAfterHostname, 1) != '~') {
+        // relative links from other views come already modified with the tilde in the path
+        tildePart = path.substring(0, path.indexOf('/'));
+        // move tilde part from path to hostname
+        path = path.substring(tildePart.length + 1);
+        hostname += tildePart;
+        docset = this.library_.get(hostname);
+      }
 
       let style = DocView.DOC_STYLE_LIGHT_;
       let styleClass = '#fff';
