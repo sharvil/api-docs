@@ -82,6 +82,17 @@ class DocView extends ScrollView {
 
       Highlight(docset.type, root);
 
+      // Scroll to element with passed id
+      if (parsedUrl.hash) {
+        // escape special characters in selector
+        const hash = parsedUrl.hash.replace('.', '\\.');
+        const foundElements = $(root).find(hash);
+        if (foundElements) {
+          const foundElement = foundElements[0];
+          $($(root).find('div')[0]).scrollTop(foundElement.offsetTop);
+        }
+      }
+
       this.title_ = docset.getTitle(path);
       this.emitter_.emit('did-change-title');
     });
