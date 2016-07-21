@@ -2,7 +2,7 @@
   "name": "api-docs",
   "author": "Sharvil Nanavati <sharvil.nanavati@gmail.com>",
   "description": "Documentation browser for popular APIs and languages.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/sharvil/api-docs",
   "repository": "https://github.com/sharvil/api-docs",
   "main": "./src/main",
