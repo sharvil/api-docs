@@ -1,6 +1,6 @@
 # API Documentation
 A beautiful, lightweight, offline documentation browser for Atom. Place
-your cursor on the phrase you want to search for and press `ctrl+d`
+your cursor on the phrase you want to search for and press `ctrl+alt+d`
 to search.
 
 ![api-docs demo](http://i.imgur.com/mQ0TFWr.gif)
