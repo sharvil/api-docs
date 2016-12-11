@@ -17,7 +17,7 @@ class DocView extends ScrollView {
 
   static content() {
     // Magic required to enable scrolling and keyboard shortcuts for scrolling.
-    return this.div({class: 'api-docs-doc', tabindex: -1});
+    return this.div({class: 'api-docs-doc native-key-bindings', tabindex: -1});
   }
 
   constructor(library, url) {
